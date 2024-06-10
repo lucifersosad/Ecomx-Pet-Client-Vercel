@@ -33,6 +33,19 @@ const NavbarItem = () => {
   return (
     <nav>
       <ul className="top-menu__list--header">
+        <li className="top-menu__item--header">
+          <span>
+            <Icon
+              className="top-menu__item--header-icon"
+              icon='solar:shop-bold'
+            />
+            <Link
+              to={"shop"}
+            >
+              shop
+            </Link>
+          </span>
+        </li>
         {categoryTree &&
           categoryTree?.tree?.map((tree, index) => (
             <li className="top-menu__item--header" key={index}>

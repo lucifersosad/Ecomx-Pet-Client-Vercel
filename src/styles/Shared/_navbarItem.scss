@@ -22,6 +22,19 @@
             &:hover {
                 color: #5b85c3;
             }
+
+            &>a {
+                cursor: pointer;
+                @include text(calc(18*100vw/1920), 600, $white, 2.4rem);
+                @include flex(center, center, null, null);
+                letter-spacing: 0.065em;
+                text-transform: uppercase;
+                transition: none;
+
+                &:hover {
+                    color: #5b85c3;
+                }
+            }
         }
 
         &-icon {
