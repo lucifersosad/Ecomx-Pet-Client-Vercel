@@ -49,12 +49,13 @@ const AccountPage = () => {
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
   const handleLogout = () => {
-    navigate('/login')
+    // navigate('/login')
     dispatch(reset())
     dispatch(useAuth.logout())
     enqueueSnackbar('You have been logged out successfully!', {
       variant: 'success',
     })
+    window.location.href = "/login";
   }
 
   return (

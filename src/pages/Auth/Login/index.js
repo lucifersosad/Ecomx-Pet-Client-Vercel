@@ -14,6 +14,7 @@ import Breadcrumb from '../../../components/Breadcrumb'
 import useAuthRedirect from '../../../hooks/useAuthRedirect '
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useAuth } from 'hooks/useAuth'
+import { getAllCartItems } from 'store/slice/cartSlice'
 function Login() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -37,6 +38,7 @@ function Login() {
       enqueueSnackbar(user?.message, {
         variant: 'success',
       })
+      dispatch(getAllCartItems())
       navigate('/')
     }
     if (user?.status === 404) {
@@ -83,6 +85,7 @@ function Login() {
                 register={register}
                 errors={errors}
                 name="username"
+                value="ownerPet123"
                 autocomplete="user-name"
               />
               <TextField
@@ -93,6 +96,7 @@ function Login() {
                 disabled={false}
                 color="blue"
                 id="password"
+                value="123456Aa@"
                 register={register}
                 errors={errors}
                 autoComplete="user-password"

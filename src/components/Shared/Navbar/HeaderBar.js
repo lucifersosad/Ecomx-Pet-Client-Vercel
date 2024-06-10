@@ -16,6 +16,9 @@ const HeaderBar = () => {
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal()
   const { cart_details } = useCart.GetCartByUserId()
 
+  const cartState = useSelector((state) => state.cart)
+  const { cartTotalQuantity } = cartState
+
   const user = useSelector((state) => state?.auth?.user?.user)
   const toggleMobileMenu = useCallback(() => {
     setShowMobileMenu((current) => !current)
@@ -95,13 +98,12 @@ const HeaderBar = () => {
                 <div className="header__cart-button header__button-link">
                   <Link to={`cart`}>
                     <Icon icon="pepicons-pop:cart" />
-                    <span className="count-info">
-                      <span>
-                        {cart_details && cart_details !== 0
-                          ? cart_details?.length
-                          : null}
-                      </span>
-                    </span>
+                    {cartTotalQuantity > 0 && 
+                      <span className="count-info">
+                        <span>
+                          {cartTotalQuantity}
+                        </span>
+                      </span>}
                   </Link>
                 </div>
               </div>
