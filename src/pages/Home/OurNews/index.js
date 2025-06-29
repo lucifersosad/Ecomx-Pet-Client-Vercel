@@ -111,7 +111,7 @@ const OurNews = () => {
             {blogs.map((item) => (
               <SwiperSlide>
                 <div
-                  onClick={navigate('/undeveloped')}
+                  onClick={() => navigate('/undeveloped')}
                   className="section-news__card"
                 >
                   <Link className="section-news__card-link" to="/">
