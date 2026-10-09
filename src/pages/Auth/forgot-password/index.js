@@ -8,7 +8,6 @@ import { validateLogin } from '../../../utils/validate'
 import { useSnackbar } from 'notistack'
 import { useSelector, useDispatch } from 'react-redux'
 import Loading from '../../../components/Loading'
-import { login } from '../../../store/auth/authSlice'
 import Breadcrumb from '../../../components/Breadcrumb'
 import useAuthRedirect from '../../../hooks/useAuthRedirect '
 
