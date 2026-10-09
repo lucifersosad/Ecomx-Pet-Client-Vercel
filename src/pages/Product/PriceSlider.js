@@ -3,10 +3,14 @@ import RangeSlider from 'react-range-slider-input'
 import 'react-range-slider-input/dist/style.css'
 import Button from '../../components/Button'
 import { getNewUrlByParams } from '../../utils/url'
-import { PARAMS_FILTER } from '../../utils/constants'
+import { PARAMS_FILTER, PRICE_STEP } from '../../utils/constants'
 import { useSetParamFilter } from '../../hooks/useParams'
 import { useLocation, useNavigate } from 'react-router-dom'
 import formatter from 'utils/formatterMoney'
+
+// round to PRICE_STEP and keep inside [min, max]
+const snapPrice = (value, [min, max]) =>
+  Math.min(max, Math.max(min, Math.round(value / PRICE_STEP) * PRICE_STEP))
 
 const PriceSlider = (props) => {
   const { priceRange, priceRangeParams, handleFilterPriceRange } = props;
@@ -14,11 +18,19 @@ const PriceSlider = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [price, setPrice] = useState(priceRangeParams)
+  const [price, setPrice] = useState(
+    priceRangeParams.map((value) => snapPrice(value, priceRange))
+  )
+
+  const [paramMin, paramMax] = priceRangeParams
+  const [rangeMin, rangeMax] = priceRange
 
   useEffect(() => {
-    setPrice(priceRangeParams);
-  }, [priceRangeParams]);
+    setPrice([
+      snapPrice(paramMin, [rangeMin, rangeMax]),
+      snapPrice(paramMax, [rangeMin, rangeMax]),
+    ]);
+  }, [paramMin, paramMax, rangeMin, rangeMax]);
   
   const min = price[0]
   const max = price[1]
@@ -38,7 +50,7 @@ const PriceSlider = (props) => {
         <RangeSlider
           min={priceRange[0]}
           max={priceRange[1]}
-          step={10}
+          step={PRICE_STEP}
           value={price}
           rangeSlideDisabled={true}
           onInput={(e) => {

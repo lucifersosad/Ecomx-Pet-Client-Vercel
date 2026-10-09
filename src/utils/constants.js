@@ -10,7 +10,8 @@ export const PRODUCTS_PER_PAGE = 10;
 
 export const SHIPPING_FLAT_RATE = 30000;
 
-export const PRICE_RANGE = [25, 500000]
+export const PRICE_RANGE = [25000, 500000]
+export const PRICE_STEP = 5000
 
 export const COLOR_LIST = [
   {
