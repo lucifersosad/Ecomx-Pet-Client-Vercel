@@ -6,13 +6,17 @@ const { cartService } = require('services/cartService')
 const GetCartByUserId = () => {
   const userId = useSelector((state) => state?.auth?.user?.user?.id)
 
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState({})
 
   useEffect(() => {
     const handleGetCartByUserId = async () => {
+      if (!userId) {
+        setCart({})
+        return
+      }
       try {
         const response = await cartService.getCartByUserId(userId)
-        setCart(response.cart)
+        setCart(response?.cart || {})
       } catch (error) {
         console.log(error)
       }
