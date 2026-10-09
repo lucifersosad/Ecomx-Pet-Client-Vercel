@@ -49,7 +49,7 @@ const getTopProductByParams = async (offset, limit) => {
 
 const getProductByTagName = async (offset, limit, keywords) => {
   const response = await axiosConfig.get(
-    `/products/filter?offset=${offset}&limit=${limit}&searchType=name&keywords=${keywords}`
+    `/products/filter?offset=${offset}&limit=${limit}&searchType=tags&keywords=${keywords}`
   )
   return response
 }
