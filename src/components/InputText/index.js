@@ -22,7 +22,7 @@ const InputText = (props) => {
                     <Editor
                         {...register(id, validate)}
                         onChange={(e) => setValue(id, e.target.getContent())}
-                        apiKey={process.env.REACT_TINY_CME_KEY}
+                        apiKey={process.env.REACT_APP_TINY_CME_KEY}
                         // onInit={(evt, editor) => (editorRef.current = editor)}
                         // initialValue="<p>This is the initial content of the editor.</p>"
                         init={{

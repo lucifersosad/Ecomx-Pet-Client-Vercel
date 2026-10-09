@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-export const baseURL =
-  'https://e-commerce-pet-server-git-dev-quindarts-projects.vercel.app'
+export const baseURL = process.env.REACT_APP_BASE_API
 
 const axiosConfig = axios.create({
   baseURL,

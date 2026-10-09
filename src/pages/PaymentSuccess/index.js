@@ -1,19 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Button from '../../components/Button'
 import { Icon } from '@iconify/react'
-import { useLocation, useNavigate } from 'react-router-dom'
 const PaymentSuccess = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-
-  const urlCancel = location?.search?.split('&')
-
-  useEffect(() => {
-    if (urlCancel && urlCancel[8] === 'vnp_TransactionStatus=02') {
-      navigate('/')
-    }
-  }, [navigate, urlCancel])
-
   return (
     <div className="payment-success">
       <div className="payment-success__img">
@@ -24,12 +12,7 @@ const PaymentSuccess = () => {
           for your payment.
         </h1>
         <div className="payment-success__button">
-          <Button
-            htmlType="link"
-            type="primary"
-            url="/"
-            onClick={navigate('/')}
-          >
+          <Button htmlType="link" type="primary" to="/">
             <span>
               <Icon icon="typcn:arrow-back" />
             </span>

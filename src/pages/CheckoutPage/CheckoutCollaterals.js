@@ -9,12 +9,19 @@ import { useParamsFilter } from '../../hooks/useParams'
 import formatter from '../../utils/formatterMoney'
 import { apiPayment } from '../../services/api-payment'
 import TextField from '../../components/textField'
+import { SHIPPING_FLAT_RATE } from '../../utils/constants'
 
 const CheckoutCollaterals = () => {
   const [paymentMethod, setPaymentMethod] = useState('')
   const { order_id } = useParamsFilter()
   const orderDetail = useFetchOrderById(order_id)
-  const transportFee = 30000
+  const transportFee = SHIPPING_FLAT_RATE
+  const subtotal =
+    orderDetail?.order?.orderDetails?.reduce(
+      (sum, item) => sum + (item?.product?.price || 0) * (item?.quantity || 0),
+      0
+    ) || 0
+  const total = orderDetail?.order?.totalOrderItem || 0
   const {
     register,
     formState: { errors },
@@ -24,7 +31,6 @@ const CheckoutCollaterals = () => {
     if (paymentMethod === 'pay-with-vnpay') {
       const sendDataPaymentOnline = async () => {
         const dataPayment = {
-          amount: orderDetail?.order?.totalOrderItem,
           bankCode: '',
           language: 'vn',
         }
@@ -89,7 +95,7 @@ const CheckoutCollaterals = () => {
             ))}
             <div className="checkout__order-price">
               Price :{' '}
-              <span>{formatter(orderDetail?.order?.totalOrderItem || 0)}</span>
+              <span>{formatter(subtotal)}</span>
             </div>
           </div>
           <div className="checkout__order-space"></div>
@@ -152,10 +158,7 @@ const CheckoutCollaterals = () => {
                 <div className="flex justify-between items-center">
                   <span className="section-cart__collateral-title">Total</span>
                   <span className="section-cart__collateral-price section-cart__collateral-price-total">
-                    {formatter(
-                      orderDetail?.order?.totalOrderItem + transportFee ||
-                        transportFee
-                    )}
+                    {formatter(total)}
                   </span>
                 </div>
               </div>
@@ -165,7 +168,7 @@ const CheckoutCollaterals = () => {
         </div>
         <div className="checkout__payment">
           <div className="checkout__sub-header">Payment Method</div>
-          <div className="checkout__order-shipping-method">
+          {/* <div className="checkout__order-shipping-method">
             <Radio
               id="cash-on-delivery"
               name="payment-method"
@@ -182,7 +185,7 @@ const CheckoutCollaterals = () => {
                 </label>
               </div>
             </Radio>
-          </div>
+          </div> */}
           <div className="checkout__order-shipping-method">
             <Radio
               id="direct-bank-transfer"
