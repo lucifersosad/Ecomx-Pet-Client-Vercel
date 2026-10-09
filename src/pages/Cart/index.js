@@ -1,15 +1,10 @@
-import { useEffect } from 'react'
 import Breadcrumb from '../../components/Breadcrumb'
 import CartDetail from './CartDetail'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllCartItems } from '../../store/slice/cartSlice'
+import { useSelector } from 'react-redux'
 import CartTotal from './CartTotal'
 import Loading from '../../components/Loading'
-import { useUserState } from 'hooks/useAuth'
 
 const Cart = () => {
-  const dispatch = useDispatch()
-
   const userState = useSelector((state) => state.auth.user)
   const { user } = userState
 

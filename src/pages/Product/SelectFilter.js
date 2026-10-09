@@ -1,7 +1,5 @@
 import { Icon } from '@iconify/react'
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { getNewUrlByParams } from '../../utils/url'
 import { PARAMS_FILTER } from '../../utils/constants'
 
 const SORT_LIST = [

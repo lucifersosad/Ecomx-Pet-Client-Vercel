@@ -14,7 +14,7 @@ const HeaderBar = () => {
   const [isSticky, setSticky] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal()
-  const { cart_details } = useCart.GetCartByUserId()
+  useCart.GetCartByUserId()
 
   const cartState = useSelector((state) => state.cart)
   const { cartTotalQuantity } = cartState

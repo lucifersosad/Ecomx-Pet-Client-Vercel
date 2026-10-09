@@ -1,27 +1,9 @@
 import { Icon } from '@iconify/react'
 import React from 'react'
-import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 
 const Breadcrumb = (props) => {
   const { targetFormat, list, className, ...res } = props
-
-  const location = useLocation()
-  let currentLink = ''
-
-  const formatCrumb = (crumb, targetFormat) => {
-    if (targetFormat === 'snake') {
-      return crumb.replace(/_/g, ' ').toLowerCase()
-    } else if (targetFormat === 'camel') {
-      return crumb.replace(/[-_\s]([a-zA-Z])/g, (match, group) =>
-        group.toUpperCase()
-      )
-    } else if (targetFormat === 'underscore') {
-      return crumb.replace(/[-\s]/g, '_')
-    } else {
-    }
-    return crumb
-  }
 
   // const crumbs = location.pathname
   //   .split('/')
@@ -42,7 +24,6 @@ const Breadcrumb = (props) => {
   //     )
   //   })
     const crumbs = list && list?.map((crumb, index, array) => {
-      currentLink += `/${crumb}`
       return (
         <li className="breadcrumbs__item" key={crumb}>
           <Link to={crumb.href}>

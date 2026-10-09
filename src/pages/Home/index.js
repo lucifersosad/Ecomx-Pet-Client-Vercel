@@ -1,5 +1,4 @@
-import React, { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import OurServices from '../../pages/Home/OurServices'
 import HeroSection from '../../pages/Home/HeroSection'
 import ProductTab from './ProductTab'
@@ -8,12 +7,6 @@ import DailySales from './DailySales'
 import OurNews from './OurNews'
 import Populated from './Populated'
 import Testimonials from './Testimonials'
-import Modal from '../../components/Modal'
-import useModal from '../../hooks/useModal'
-import { useForm } from 'react-hook-form'
-import ProductQuickview from '../../components/Product/ProductQuickview'
-import { useDispatch, useSelector } from 'react-redux'
-import Button from '../../components/Button'
 import MarqueeRunning from '../../components/MarqueeRunning'
 import Brand from './Brand'
 
@@ -30,22 +23,6 @@ const data = {
 }
 
 function Home() {
-  const { showProductModal, handleProductModal } = useModal()
-  const refQuantity = useRef(data.quantity || 0)
-
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    reset,
-    setValue,
-  } = useForm()
-
-  const handleChangeQuantity = (quantity) => {
-    refQuantity.current = Number(quantity)
-    console.log(quantity)
-  }
-
   return (
     <div>
       <HeroSection />

@@ -64,6 +64,7 @@ const InputQuantity = (props) => {
             })
             increase.current.addEventListener('mouseup', mouseUp)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleButtonClick = (action) => {

@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import ReactDomServer from 'react-dom/server'
 import getCountry from 'js-user-country'
-import Button from '../components/Button'
 const UseTranslate = (Props) => {
     const nameCountry = getCountry().name
     const strCountry =
@@ -62,12 +61,14 @@ const UseTranslate = (Props) => {
                 } catch (error) {}
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lang])
 
     useEffect(() => {
         try {
             handleTrans()
         } catch (error) {}
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dep])
     useEffect(() => {
         setStyleCss(style)
@@ -95,7 +96,7 @@ const UseTranslate = (Props) => {
                 dangerouslySetInnerHTML={{ __html: elTranslate }}
             ></Tag>
         )
-    } else if (language == 'en') {
+    } else if (language === 'en') {
         return (
             <Tag
                 onClick={onPress ? onPress : undefined}

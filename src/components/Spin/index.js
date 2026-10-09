@@ -1,10 +1,4 @@
-const Spin = ({ size = '40px', color = '#000' }) => {
-  const style = {
-    width: size,
-    height: size,
-    borderTopColor: color,
-  }
-
+const Spin = () => {
   return <span className="spin"></span>
 }
 

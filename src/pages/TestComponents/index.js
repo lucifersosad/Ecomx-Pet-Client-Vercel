@@ -1,13 +1,10 @@
 
 import Checkbox from '../../components/CheckBox'
-import ProductCard from '../../components/ProductCard'
 import Button from '../../components/Button'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Icon } from '@iconify/react'
-import InputQuantity from '../../components/InputQuantity'
 import formatter from '../../utils/formatterMoney'
-import UseTranslate from '../../utils/translate'
 import Breadcrumb from '../../components/Breadcrumb'
 import Accordin from '../../components/Accordin/Accordin'
 
@@ -16,18 +13,12 @@ import QuantityTextField from '../../components/QuantityTextField'
 
 import Tab from '../../components/Tab'
 
-import InputText from '../../components/InputText'
-import Badge from '../../components/Badge'
 import TabContent from '../../components/Tab/TabContent'
-import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import useModal from '../../hooks/useModal'
 import ProductQuickview from '../../components/Product/ProductQuickview'
 import demo from '../../assets/img/ricky-118-460x373.jpg'
 import ProductContext from '../../components/Product/ProductContext'
-import { useDispatch } from 'react-redux'
-import Dropdown from '../../components/Dropdown'
-import SelectFilter from '../Product/SelectFilter'
 import TextField from '../../components/textField'
 
 const data = {
@@ -47,42 +38,11 @@ const data = {
   },
 }
 
-const data1 = {
-  avaiable: 8,
-  brand: 'no brand',
-  category: {
-    _id: '658c2b67bc44f84fa60347b7',
-    code: 'FS296L',
-    name: 'fish aquariums & decor',
-    total: 200,
-  },
-  code: 'AHKCFPDL',
-  description:
-    'Wonder and joy await you with this fin-tastic biOrb Classic LED Fish Aquarium! The natural beauty of the aquatic world is on full display with this 360-degree dish bowl. You’ll receive a low voltage pump, LED lighting, filtration, a manual and the aquarium itself.',
-  dimensions: { length: 20, width: 20, weight: 900, height: 22 },
-  isActive: true,
-  name: 'Classic LED Fish Aquarium',
-  price: 350000,
-  tags: ['Fish Aquariums & Decor', 'Aquariums & Decor', 'Aquariums', 'Decor'],
-  _id: '659e5172e74f7eb4d88a2a54',
-}
-
 const TestComponents = () => {
   const { enqueueSnackbar } = useSnackbar()
 
-  const [isChecked, setChecked] = useState(false)
-  const [dataCard, setDataCard] = useState(data)
   const { showProductModal, handleProductModal } = useModal()
   const refQuantity = useRef(data.quantity || 0)
-
-  // Pagination
-  const [currentPage, setCurrentPage] = useState(0)
-
-  const handlePageChange = (newOffset) => {
-    setCurrentPage(newOffset)
-  }
-
-  // Pagination
 
   // Tab
   const [currentTab, setCurrentTab] = useState(1)
@@ -97,24 +57,11 @@ const TestComponents = () => {
     console.log(quantity)
   }
 
-  const [lang, setLang] = useState('')
-  useEffect(() => {
-    if (localStorage.getItem('lang')) {
-      setLang(localStorage.getItem('lang'))
-    }
-    // localStorage.setItem('lang', 'zh-CN');
-  }, [])
-
-  const handleCheckboxChange = () => {
-    setChecked(!isChecked)
-  }
-
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
-    setValue,
   } = useForm()
 
   const onSubmit = (value) => {
@@ -200,10 +147,6 @@ const TestComponents = () => {
       title: 'Lắm',
     },
   ]
-
-  const paginateData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-
-  const dispatch = useDispatch()
 
   return (
     <>

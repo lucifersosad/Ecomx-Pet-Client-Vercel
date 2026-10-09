@@ -1,4 +1,3 @@
-import { Icon } from '@iconify/react'
 import { Fragment } from 'react'
 
 const Dropdown = (props) => {

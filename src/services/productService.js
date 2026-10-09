@@ -1,5 +1,5 @@
 import axiosConfig from './axiosConfig'
-import { PARAMS_FILTER, PRICE_RANGE, PRODUCTS_PER_PAGE } from '../utils/constants'
+import { PRICE_RANGE, PRODUCTS_PER_PAGE } from '../utils/constants'
 
 const getProducts = async (pageIndex, cateId) => {
   try {

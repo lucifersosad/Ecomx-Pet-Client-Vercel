@@ -24,7 +24,6 @@ const CardProduct = (props) => {
     available,
     price,
     images,
-    ...restData
   } = data
 
   const classValue = `product-card${className ? ` ${className}` : ''}`

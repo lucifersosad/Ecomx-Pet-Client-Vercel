@@ -1,7 +1,6 @@
 import { cartService } from '../../services/cartService'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { productService } from '../../services/productService'
-import { useAuth } from '../../hooks/useAuth'
 import { enqueueSnackbar } from 'notistack'
 
 const initialState = {

@@ -1,6 +1,6 @@
 import React from 'react'
 import Breadcrumb from '../../components/Breadcrumb'
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import { useDispatch } from 'react-redux'
 import { reset } from '../../store/auth/authSlice'
@@ -46,7 +46,6 @@ const AccountPage = () => {
   const title = path[path.length - 1].split('_').join(' ')
   const user = useAuth.useUser()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
   const handleLogout = () => {
     // navigate('/login')

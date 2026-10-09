@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom'
-import demo from '../../assets/img/ricky-118-460x373.jpg'
 import Button from '../../components/Button'
 import { Icon } from '@iconify/react'
 import QuantityTextField from '../../components/QuantityTextField'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import useDebounce from '../../hooks/useDebounce'
-import { cartService } from '../../services/cartService'
 import { useDispatch } from 'react-redux'
 import { deleteCartItem, updateQuantityCartItem } from '../../store/slice/cartSlice'
 import formatter from '../../utils/formatterMoney'
@@ -49,6 +47,7 @@ const CartItem = (props) => {
         })
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedQuantity]);
 
   const handleRemoveCartItem = () => {

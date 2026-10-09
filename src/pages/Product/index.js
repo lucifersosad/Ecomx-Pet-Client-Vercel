@@ -74,6 +74,7 @@ const Product = () => {
       }
     }
     getProductList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cateId, pageIndex])
 
   const getParamSort = (params) => {

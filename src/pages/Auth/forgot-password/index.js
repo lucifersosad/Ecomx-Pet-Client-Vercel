@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import TextField from '../../../components/textField'
 import Button from '../../../components/Button'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { validateLogin } from '../../../utils/validate'
 import { useSnackbar } from 'notistack'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Loading from '../../../components/Loading'
 import Breadcrumb from '../../../components/Breadcrumb'
 import useAuthRedirect from '../../../hooks/useAuthRedirect '
 
 function ForgotPasswordPage() {
-  const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
   const {
     register,
@@ -24,8 +23,7 @@ function ForgotPasswordPage() {
   })
 
   useAuthRedirect()
-  const dispatch = useDispatch()
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { isLoading } = useSelector(
     (state) => state.auth
   )
 
@@ -41,8 +39,7 @@ function ForgotPasswordPage() {
   //       })
   //     }
   //   }, [message, enqueueSnackbar, isError, isSuccess, navigate, user, dispatch])
-  const [email, setEmail] = useState('')
-  const onSubmit = () => {
+  const onSubmit = ({ email }) => {
     const data = {
       email: email,
     }

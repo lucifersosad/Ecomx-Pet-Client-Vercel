@@ -1,4 +1,3 @@
-import demo from '../../assets/img/ricky-118-460x373.jpg'
 import ProductContext from './ProductContext'
 
 const ProductQuickview = (props) => {
