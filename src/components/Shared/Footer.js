@@ -7,7 +7,6 @@ import address from '../../assets/svg/address.svg'
 import mail from '../../assets/svg/mail.svg'
 import openTime from '../../assets/svg/open-time.svg'
 import arrows from '../../assets/svg/arrows.svg'
-import UseTranslate from '../../utils/translate'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
@@ -152,14 +151,7 @@ const Footer = () => {
                 <img src={heart} alt="" />
               </div>
               <span>
-                <UseTranslate
-                  data={{
-                    text: `Quis quisque viverra nulla risus integer aliquet in.
-                              Dis nascetur vitae sed ultricies vel luctus massa.
-                              Sed orci ut magnis maecenas pharetra.`,
-                    useUI: true,
-                  }}
-                />
+                Hand-picked accessories from brands we trust. Safe and comfy for every pet.
               </span>
             </div>
             <div className="item2__content">
@@ -167,14 +159,7 @@ const Footer = () => {
                 <img src={car} alt="" />
               </div>
               <span>
-                <UseTranslate
-                  data={{
-                    text: ` Ut et duis ornare in eget elit. Vestibulum nisi nec
-                                      ultricies consectetur suspendisse. Vitae aliquam
-                                      quis sed at et.`,
-                    useUI: true,
-                  }}
-                />
+                Fast delivery right to your door. Every order is packed with care.
               </span>
             </div>
           </div>
