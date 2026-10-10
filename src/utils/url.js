@@ -26,3 +26,6 @@ export const getNewUrlByPagination = (currentParams, pageIndex) => {
     }
 };
 
+export const getSubCategoryUrl = (subCategory) => {
+    return `/product-category/${subCategory?._id}`;
+};

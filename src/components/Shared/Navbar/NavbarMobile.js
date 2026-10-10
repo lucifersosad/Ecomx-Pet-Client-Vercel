@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ListIconNavbar } from '../../../utils/Icon'
-import { MenuItems } from '../../../utils/MenuItem'
+import { getSubCategoryUrl } from '../../../utils/url'
 import Modal from '../../Modal'
 import useModal from '../../../hooks/useModal'
 import Search from '../../Search'
@@ -15,7 +15,6 @@ const NavbarMobile = ({ className, onClose }) => {
 
   const [step, setStep] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState(null)
-  const [selectedMenu, setSelectedMenu] = useState(null)
   const { categoryTree } = useSelector((state) => state?.categories)
   const user = useSelector((state) => state?.auth?.user?.user)
 
@@ -23,15 +22,8 @@ const NavbarMobile = ({ className, onClose }) => {
     setStep(!step)
   }
 
-  const handleMenuClick = (menu) => {
-    setSelectedMenu(menu)
-    setSelectedCategory(null) // Reset selected category
-    setStep(true)
-  }
-
   const handleCategoryClick = (category) => {
     setSelectedCategory(category)
-    setSelectedMenu(null) // Reset selected menu
     setStep(true)
   }
 
@@ -59,6 +51,19 @@ const NavbarMobile = ({ className, onClose }) => {
             {/* Category level 1 */}
 
             <ul className="navbar__mobile-list">
+              <li>
+                <Link
+                  to="/shop"
+                  className="navbar__mobile-item"
+                  onClick={onClose}
+                >
+                  <Icon
+                    className="navbar__mobile-item-icon-left"
+                    icon="solar:shop-bold"
+                  />
+                  SHOP
+                </Link>
+              </li>
               {categoryTree &&
                 categoryTree?.tree?.map((tree, index) => (
                   <li key={index}>
@@ -85,17 +90,11 @@ const NavbarMobile = ({ className, onClose }) => {
             {/* Menu Level 1 */}
 
             <ul className="navbar__mobile-list">
-              {MenuItems?.map((menuItem, index) => (
-                <li onClick={() => handleMenuClick(menuItem)} key={index}>
-                  <Link className="navbar__mobile-item">
-                    {menuItem.label}
-                    <Icon
-                      className="navbar__mobile-item-icon-right"
-                      icon={'mingcute:right-fill'}
-                    />
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="navbar__mobile-item" onClick={onClose}>
+                  HOME
+                </Link>
+              </li>
             </ul>
           </div>
           {/* Category level 2 */}
@@ -111,35 +110,11 @@ const NavbarMobile = ({ className, onClose }) => {
                 {selectedCategory?.child?.map((subItem) => (
                   <li key={subItem._id}>
                     <Link
-                      to={subItem.path}
+                      to={getSubCategoryUrl(subItem)}
                       className="navbar__mobile-item"
                       onClick={onClose}
                     >
                       {subItem.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {/* Menu Level 2 */}
-
-          {step && selectedMenu && (
-            <div className={`navbar__mobile-page`}>
-              <ul className="navbar__mobile-list">
-                <li>
-                  <Link className="navbar__mobile-item parent">
-                    {selectedMenu?.label}
-                  </Link>
-                </li>
-                {selectedMenu?.subMenu?.map((subItem, subIndex) => (
-                  <li onClick={() => handleMenuClick(subItem)} key={subIndex}>
-                    <Link to={subItem?.link} className="navbar__mobile-item">
-                      {subItem?.label}
-                      <Icon
-                        className="navbar__mobile-item-icon-right"
-                        icon={'mingcute:right-fill'}
-                      />
                     </Link>
                   </li>
                 ))}
@@ -155,18 +130,18 @@ const NavbarMobile = ({ className, onClose }) => {
           </span>
         </div>
         <div className="header__auth-button header__button-link">
-          <Link to={`${user ? 'my_account' : 'login'}`} onClick={onClose}>
+          <Link to={user ? '/my_account' : '/login'} onClick={onClose}>
             <Icon icon="ph:user-bold" />
           </Link>
         </div>
         <div className="header__wishlist-button header__button-link">
-          <Link onClick={onClose}>
+          <Link to="/undeveloped" onClick={onClose}>
             <Icon icon="iconamoon:heart-bold" />
             {/* <span className="navbar__mobile-count">99</span> */}
           </Link>
         </div>
         <div className="header__cart-button header__button-link">
-          <Link to={`cart`} onClick={onClose}>
+          <Link to="/cart" onClick={onClose}>
             <Icon icon="pepicons-pop:cart" />
             <span className="navbar__mobile-count">
               {cart_details && cart_details !== 0 ? cart_details?.length : null}

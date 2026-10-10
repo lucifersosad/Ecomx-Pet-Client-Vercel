@@ -15,10 +15,12 @@ const Navbar = () => {
                 {MenuItems.map((menuitem, index) => (
                   <li key={index} className="top-bar-menu__item">
                     <Link to={menuitem.link}>{menuitem.label}</Link>
-                    <Icon
-                      className="top-bar-menu__item--icon"
-                      icon="mingcute:down-small-line"
-                    />
+                    {menuitem.subMenu && (
+                      <Icon
+                        className="top-bar-menu__item--icon"
+                        icon="mingcute:down-small-line"
+                      />
+                    )}
                     {/* level 2 */}
 
                     {menuitem.subMenu && (

@@ -7,6 +7,7 @@ import Button from '../../Button'
 import { fetchCategoryTree } from '../../../store/categorySlice'
 import { useSnackbar } from 'notistack'
 import { ListIconNavbar } from '../../../utils/Icon'
+import { getSubCategoryUrl } from '../../../utils/url'
 
 const NavbarItem = () => {
   const { enqueueSnackbar } = useSnackbar()
@@ -68,10 +69,7 @@ const NavbarItem = () => {
                         {tree?.child?.map((subItem) => (
                           <li key={subItem._id} className="submenu--item">
                             <Link
-                              to={`shop?offset=${1}&limit=${10}&searchType=name&keywords=${subItem?.name.replace(
-                                /\s/g,
-                                ''
-                              )}`}
+                              to={getSubCategoryUrl(subItem)}
                               className="submenu--item-link"
                             >
                               {subItem.name}
@@ -112,7 +110,7 @@ const NavbarItem = () => {
                   {tree?.child?.map((subItem) => (
                     <li key={subItem?._id} className="submenu--item">
                       <Link
-                        to={`product-category/${subItem?._id}`}
+                        to={getSubCategoryUrl(subItem)}
                         className="submenu--item-link"
                       >
                         {subItem?.name}
