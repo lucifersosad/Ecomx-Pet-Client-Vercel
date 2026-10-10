@@ -292,17 +292,17 @@ const Product = () => {
                         params={params}
                         handleClickFilter={handleClickFilter}
                       />
-                      {/* <div className="sidebar-filter-mobile">
+                      <div className="sidebar-filter-mobile">
                         <Button
                           type="primary"
                           size="small"
                           ghost
-                          onClick={openFilterMobile}
+                          onClick={() => {}}
                         >
                           <Icon icon="fa-solid:angle-left" />
                           filter
                         </Button>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                   <div className="shop-main-list">
